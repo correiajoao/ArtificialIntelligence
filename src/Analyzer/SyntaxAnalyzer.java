@@ -2,7 +2,7 @@ package Analyzer;
 
 import Analyzer.Sentence.ComplexSentence;
 import Analyzer.Sentence.Sentence;
-import Analyzer.Sentence.SingleSentence;
+import Analyzer.Sentence.SimpleSentence;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,7 +34,7 @@ public class SyntaxAnalyzer {
                 return new ComplexSentence(atom[0], atom[1], "->");
             }
         }else if(matchSingleSentence.find()){
-            return new SingleSentence(input);
+            return new SimpleSentence(input);
         }else{
             return null;
         }

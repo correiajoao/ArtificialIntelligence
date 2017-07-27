@@ -36,11 +36,23 @@ public class ComplexSentence implements Sentence {
     }
 
     @Override
+    public int hashCode() {
+        return atomOne.hashCode() + atomTwo.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (o == this) return true;
+        if (!(o instanceof ComplexSentence)) {
+            return false;
+        }
+
+        ComplexSentence sentence = (ComplexSentence) o;
+        return sentence.getAtomOne().equals(atomOne) && sentence.getAtomTwo().equals(atomTwo);
+    }
+
+    @Override
     public String toString() {
-        return "ComplexSentence{" +
-                "atomOne='" + atomOne + '\'' +
-                ", atomTwo='" + atomTwo + '\'' +
-                ", operator='" + operator + '\'' +
-                '}';
+        return  atomOne  + operator + atomTwo;
     }
 }

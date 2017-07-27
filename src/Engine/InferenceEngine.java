@@ -2,29 +2,43 @@ package Engine;
 
 import Analyzer.Sentence.ComplexSentence;
 import Analyzer.Sentence.Sentence;
-import Analyzer.Sentence.SingleSentence;
+import Analyzer.Sentence.SimpleSentence;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.HashSet;
 import java.util.Set;
 
 public class InferenceEngine {
-    public static boolean SearchFor(Set<ComplexSentence> complexSentencesSet, Set<SingleSentence> singleSentencesSet, Sentence conclusion){
+    public static boolean SearchFor(Set<ComplexSentence> complexSentencesSet, Set<SimpleSentence> simpleSentencesSet, Sentence conclusion){
 
-            Set<SingleSentence> resultFromModesPones = new HashSet<SingleSentence>();
-            for (ComplexSentence cs : complexSentencesSet) {
-                for (SingleSentence ss : singleSentencesSet) {
-                    if (cs.getAtomOne().equals(ss.getAtomOne())) {
-                        resultFromModesPones.add(new SingleSentence(cs.getAtomTwo()));
+            Boolean contaisModesPones = true;
+            while (contaisModesPones){
+                contaisModesPones = false;
+
+
+                Set<SimpleSentence> resultFromModesPones = new HashSet<SimpleSentence>();
+                for (ComplexSentence cs : complexSentencesSet) {
+                    for (SimpleSentence ss : simpleSentencesSet) {
+                        if (cs.getAtomOne().equals(ss.getAtomOne())) {
+                            resultFromModesPones.add(new SimpleSentence(cs.getAtomTwo()));
+                            contaisModesPones = true;
+                        }
                     }
+                }
+
+                simpleSentencesSet.addAll(resultFromModesPones);
+                if(simpleSentencesSet.contains(conclusion)) {
+                    printResult(complexSentencesSet, simpleSentencesSet);
+                    return true;
                 }
             }
 
-            singleSentencesSet.addAll(resultFromModesPones);
-
-            System.out.println(complexSentencesSet.toString());
-            System.out.println(singleSentencesSet.toString());
-
+        printResult(complexSentencesSet, simpleSentencesSet);
         return false;
+    }
+
+    public static void printResult(Set<ComplexSentence> complexSentencesSet, Set<SimpleSentence> simpleSentencesSet){
+        System.out.println("Resultado final da base de conhecimento: ");
+        System.out.println(simpleSentencesSet.toString());
+        System.out.println(complexSentencesSet.toString());
     }
 }
