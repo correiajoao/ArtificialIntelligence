@@ -2,6 +2,7 @@ import Analyzer.SyntaxAnalyzer;
 import Analyzer.Sentence.ComplexSentence;
 import Analyzer.Sentence.Sentence;
 import Analyzer.Sentence.SingleSentence;
+import Engine.InferenceEngine;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -35,9 +36,19 @@ public class Main {
 
         }while(true);
 
-        System.out.println(singleSentences.toString());
-        System.out.println(complexSentences.toString());
+        //System.out.println(singleSentences.toString());
+        //System.out.println(complexSentences.toString());
 
+        System.out.println("Insert the goal:");
+        String goal = input.nextLine();
+
+        Sentence sentenceGoal = SyntaxAnalyzer.analyze(goal);
+
+        if (sentenceGoal == null) {
+            System.err.println("Error: Wrong instruction");
+        }else{
+            InferenceEngine.SearchFor(complexSentences,singleSentences, sentenceGoal);
+        }
 
     }
 }
