@@ -1,38 +1,40 @@
 package Analyzer.Sentence;
 
-public class ComplexSentence implements Sentence {
-    private String atomOne;
-    private String atomTwo;
-    private String operator;
+import Analyzer.Connective;
 
-    public ComplexSentence(String atomOne, String atomTwo, String operator) {
+public class ComplexSentence implements Sentence {
+    private Atom atomOne;
+    private Atom atomTwo;
+    private Connective connective;
+
+    public ComplexSentence(Atom atomOne, Atom atomTwo, Connective connective) {
         this.atomOne = atomOne;
         this.atomTwo = atomTwo;
-        this.operator = operator;
+        this.connective = connective;
     }
 
-    public String getAtomOne() {
+    public Atom getAtomOne() {
         return atomOne;
     }
 
-    public void setAtomOne(String atomOne) {
+    public void setAtomOne(Atom atomOne) {
         this.atomOne = atomOne;
     }
 
-    public String getAtomTwo() {
+    public Atom getAtomTwo() {
         return atomTwo;
     }
 
-    public void setAtomTwo(String atomTwo) {
+    public void setAtomTwo(Atom atomTwo) {
         this.atomTwo = atomTwo;
     }
 
-    public String getOperator() {
-        return operator;
+    public Connective getConnective() {
+        return connective;
     }
 
-    public void setOperator(String operator) {
-        this.operator = operator;
+    public void setConnective(Connective connective) {
+        this.connective = connective;
     }
 
     @Override
@@ -48,11 +50,11 @@ public class ComplexSentence implements Sentence {
         }
 
         ComplexSentence sentence = (ComplexSentence) o;
-        return sentence.getAtomOne().equals(atomOne) && sentence.getAtomTwo().equals(atomTwo);
+        return sentence.getAtomOne().equals(atomOne) && sentence.getAtomTwo().equals(atomTwo) && sentence.getConnective() == this.connective;
     }
 
     @Override
     public String toString() {
-        return  atomOne  + operator + atomTwo;
+        return  atomOne.toString()  + connective + atomTwo.toString();
     }
 }

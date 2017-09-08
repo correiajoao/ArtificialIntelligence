@@ -1,17 +1,17 @@
 package Analyzer.Sentence;
 
 public class SimpleSentence implements Sentence {
-    private String atomOne;
+    private Atom atomOne;
 
-    public SimpleSentence(String atomOne) {
+    public SimpleSentence(Atom atomOne) {
         this.atomOne = atomOne;
     }
 
-    public String getAtomOne() {
+    public Atom getAtomOne() {
         return atomOne;
     }
 
-    public void setAtomOne(String atomOne) {
+    public void setAtomOne(Atom atomOne) {
         this.atomOne = atomOne;
     }
 
@@ -33,6 +33,6 @@ public class SimpleSentence implements Sentence {
 
     @Override
     public String toString() {
-        return  atomOne ;
+        return  atomOne.toString() ;
     }
 }

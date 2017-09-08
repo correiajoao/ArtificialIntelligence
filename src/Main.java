@@ -17,8 +17,8 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         System.out.println("----------------------------------------------------------------------------------------");
-        System.out.println("Olá, insira novas sentenças sempre com letras maiúsculas do alfabeto. Exemplo: A->B ou A.");
-        System.out.println("Para finalizar a inserção de novas sentenças insira: X.");
+        System.out.println("Olá, insira novas sentenças sempre com letras maiúsculas do alfabeto. Exemplo: A(>, v, ^)B ou A.");
+        System.out.println("Para finalizar a inserção de novas sentenças insira: Z.");
         System.out.println("Siga as orientações do sistema.");
         System.out.println("----------------------------------------------------------------------------------------");
 
@@ -26,7 +26,7 @@ public class Main {
             System.out.println("Insira uma nova sentença na base de conhecimento:");
             String value = input.nextLine();
 
-            if(value.equals("X")){
+            if(value.equals("Z")){
                 break;
             }
 
@@ -40,7 +40,6 @@ public class Main {
             } else if (sentence instanceof ComplexSentence) {
                 complexSentences.add((ComplexSentence) sentence);
             }
-
         }while(true);
 
         System.out.println("Insira o estado a ser inferido:");
