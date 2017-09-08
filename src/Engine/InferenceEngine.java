@@ -40,7 +40,6 @@ public class InferenceEngine {
 
             complexSet.addAll(result);
 
-            //System.out.println("Equivalences");
             rule4 = false;
             result = new HashSet<ComplexSentence>();
             for (ComplexSentence cs : complexSet) {
@@ -103,8 +102,6 @@ public class InferenceEngine {
         for (ComplexSentence cs : complexSet) {
             for (SimpleSentence ss : simpleSet) {
                 if (cs.getAtomOne().equals(ss.getAtomOne()) && cs.getConnective() == Connective.implies) {
-
-                    //System.out.println("Modus pones:" + cs.toString() + ss.toString());
 
                     Atom atom1 = new Atom(cs.getAtomTwo().getSimbol(), cs.getAtomTwo().isNegation());
                     SimpleSentence inference = new SimpleSentence(atom1);
@@ -212,7 +209,6 @@ public class InferenceEngine {
         complexSet = complexSentencesSet;
         simpleSet = simpleSentencesSet;
 
-        //while (modusPones || andElimination || andIntroduction || unitResolution || resolution){
         while (modusPones || andElimination || andIntroduction || unitResolution || resolution ){
             generateEquivalences();
 
